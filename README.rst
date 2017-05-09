@@ -1,6 +1,15 @@
 Hienoi
 ======
 
+.. image:: https://img.shields.io/pypi/v/hienoi.svg
+   :target: https://pypi.python.org/pypi/hienoi
+   :alt: PyPI latest version
+
+.. image:: https://img.shields.io/pypi/l/hienoi.svg
+   :target: https://pypi.python.org/pypi/hienoi
+   :alt: License
+
+
 Hienoi is a framework offering an intuitive visual programming experience based
 around simple 2D particle physics.
 
