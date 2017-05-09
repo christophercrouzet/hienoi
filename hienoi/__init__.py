@@ -8,7 +8,7 @@
 
 __title__ = 'hienoi'
 __version__ = '0.1.0'
-__summary__ = "2D particles playground"
+__summary__ = "2D particle playground"
 __url__ = 'https://github.com/christophercrouzet/hienoi'
 __author__ = "Christopher Crouzet"
 __contact__ = 'christopher.crouzet@gmail.com'
