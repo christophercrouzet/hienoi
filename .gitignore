@@ -1,0 +1,10 @@
+# OS related.
+._*
+.DS_Store
+
+# Python related.
+__pycache__/
+*.dist-info/
+*.egg-info/
+*.lprof
+*.py[co]
