@@ -15,6 +15,7 @@ import OpenGL.GL as gl
 import hienoi._common
 import hienoi._numeric
 from hienoi._common import GraphicsAPI, GLProfile, ParticleDisplay
+from hienoi._vectors import Vector2f
 
 
 if sys.version_info[0] == 2:
@@ -330,6 +331,14 @@ class SceneState(_SceneState):
     """
 
     __slots__ = ()
+
+    @property
+    def lower_bounds(self):
+        return Vector2f(*numpy.amin(self.particles['position'], axis=0))
+
+    @property
+    def upper_bounds(self):
+        return Vector2f(*numpy.amax(self.particles['position'], axis=0))
 
 
 _Pixels = collections.namedtuple(

@@ -3,7 +3,6 @@
 import collections
 import ctypes
 
-import numpy
 import sdl2
 
 import hienoi.renderer
@@ -445,10 +444,8 @@ class GUI(object):
                 self._initial_view_aperture_x,
                 self._initial_view_aperture_x * window_size.y / window_size.x)
 
-            lower_bounds = Vector2f(
-                *numpy.amin(scene_state.particles['position'], axis=0))
-            upper_bounds = Vector2f(
-                *numpy.amax(scene_state.particles['position'], axis=0))
+            lower_bounds = scene_state.lower_bounds
+            upper_bounds = scene_state.upper_bounds
             required_size = (upper_bounds - lower_bounds).iscale(
                 _FIT_VIEW_REL_PADDING)
             required_size = Vector2f(
