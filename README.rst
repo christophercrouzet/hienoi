@@ -18,7 +18,7 @@ Features
 --------
 
 * 2D particle simulation.
-* GUI with viewport.
+* GUI with OpenGL viewport.
 * user-friendly API.
 * support for per-particle user attributes.
 * fast when directly operating particles through NumPy.
