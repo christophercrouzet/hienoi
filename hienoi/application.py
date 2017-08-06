@@ -386,7 +386,8 @@ def _run(configs):
                 for c in process.output_pipes:
                     _flush_pipe(c)
 
-            process.instance.join()
+            if process.instance.pid != None:
+                process.instance.join()
 
     return return_code
 
