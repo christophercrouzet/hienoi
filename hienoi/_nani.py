@@ -236,6 +236,42 @@ Nani = collections.namedtuple(
     ))
 
 
+class PickableNaniStructure(object):
+    """Nani structure that can be pickled."""
+
+    def __init__(self, fields, name):
+        self._fields = fields
+        self._name = name
+        self._build()
+
+    def __getstate__(self):
+        return {'_fields': self._fields, '_name': self._name}
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self._build()
+
+    def _build(self):
+        self._obj = resolve(Structure(fields=self._fields, name=self._name))
+        setattr(self._obj.view, 'data', property(fget=lambda self: self._data))
+
+    @property
+    def dtype(self):
+        return self._obj.dtype
+
+    @property
+    def default(self):
+        return self._obj.default
+
+    @property
+    def view(self):
+        return self._obj.view
+
+    @property
+    def element_view(self):
+        return self._obj.element_view
+
+
 def resolve(data_type, name=None):
     """Retrieve the properties of a given data type."""
     _validate(data_type)

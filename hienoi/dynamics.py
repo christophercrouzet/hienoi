@@ -7,12 +7,11 @@ import sys
 import numpy
 
 import hienoi._common
-import hienoi._nani
 import hienoi._numeric
 from hienoi._common import UserData
 from hienoi._dynamicarray import DynamicArray
 from hienoi._kdtree import KDTree
-from hienoi._nani import Bool, Number, READ_ONLY
+from hienoi._nani import Bool, Number, READ_ONLY, PickableNaniStructure
 from hienoi._numeric import Int32, Float32
 from hienoi._orderedbuffer import OrderedBuffer
 from hienoi._vectors import VECTOR2F
@@ -178,10 +177,7 @@ class ParticleSimulation(object):
         if particle_attributes is not None:
             attrs += particle_attributes
 
-        self._nani = hienoi._nani.resolve(
-            hienoi._nani.Structure(fields=attrs, name='Particle'))
-        setattr(self._nani.view, 'data', property(
-            fget=lambda self: self._data))
+        self._nani = PickableNaniStructure(attrs, 'Particle')
 
         self._presolve_callback = presolve_callback
         self._postsolve_callback = postsolve_callback
