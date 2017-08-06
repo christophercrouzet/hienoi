@@ -47,7 +47,9 @@ class DynamicArray(object):
         """Replace the data with a copy of some other data."""
         size = len(data)
         self.grow(size, copy=False)
-        self._array[:size] = data
+        for field in self._array.dtype.fields:
+            self._array[field][:size] = data[field]
+
         self._size = size
 
     def grow(self, requested, copy=True):
