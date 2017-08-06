@@ -532,8 +532,9 @@ class Renderer(object):
                            state.stroke_width * 0.5 * pixel_size)
             gl.glUniform1i(uniforms.fill,
                            state.particle_display == ParticleDisplay.DISC)
-            gl.glDrawArraysInstanced(gl.GL_TRIANGLE_STRIP, 0, 4,
-                                     particle_count)
+            if particle_count > 0:
+                gl.glDrawArraysInstanced(gl.GL_TRIANGLE_STRIP, 0, 4,
+                                         particle_count)
 
     def _reserve_vbo(self, capacity):
         """Increase the capacity of the OpenGL VBO buffer currently bound."""
