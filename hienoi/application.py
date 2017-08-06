@@ -346,9 +346,8 @@ def _run(configs):
         _Process(
             instance=_create_process(
                 _gui_process, 'gui',
-                args=(logger, gui_to_psim_pipe[1], upwards_queue,
-                      psim_to_gui_pipe[0], downwards_queue, initial_sim_states,
-                      configs),
+                args=(gui_to_psim_pipe[1], upwards_queue, psim_to_gui_pipe[0],
+                      downwards_queue, initial_sim_states, configs),
                 kwargs={},
                 upwards=upwards_queue,
                 profile=configs.application['profile']),
@@ -357,7 +356,7 @@ def _run(configs):
         _Process(
             instance=_create_process(
                 _particle_simulation_process, 'particle_simulation',
-                args=(logger, psim_to_gui_pipe[1], gui_to_psim_pipe[0],
+                args=(psim_to_gui_pipe[1], gui_to_psim_pipe[0],
                       downwards_queue, initial_sim_states, configs),
                 kwargs={},
                 upwards=upwards_queue,
@@ -412,8 +411,7 @@ def _main_process(logger, downwards, upwards, process_count, configs):
     return Status.SUCCESS
 
 
-def _gui_process(logger, to_psim, upwards, from_psim, downwards, sims,
-                 configs):
+def _gui_process(to_psim, upwards, from_psim, downwards, sims, configs):
     """GUI process."""
     gui = None
     try:
@@ -504,8 +502,7 @@ def _gui_process(logger, to_psim, upwards, from_psim, downwards, sims,
             gui.terminate()
 
 
-def _particle_simulation_process(logger, to_gui, from_gui, downwards, sims,
-                                 configs):
+def _particle_simulation_process(to_gui, from_gui, downwards, sims, configs):
     """Particle simulation process."""
     try:
         sim = sims.particle
