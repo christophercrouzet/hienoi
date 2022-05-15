@@ -659,7 +659,7 @@ def _get_vertex_formats(vertex_formats_data, bufs):
                 divisor=attr.get('divisor', 0))
             for attr in vertex_format_data['attributes'])
         dtype = numpy.dtype([
-            (attr['name'], (gl_to_numpy_type(attr['type']), attr['count']))
+            (attr['name'], (gl_to_numpy_type(attr['type']), (attr['count'],)))
             for attr in vertex_format_data['attributes']])
         formats[vertex_format_name] = _VertexFormat(
             vao=getattr(bufs.vao, vertex_format_data['vao']),
